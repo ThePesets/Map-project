@@ -83,6 +83,7 @@
             border-radius: 5px;
             background: transparent;
         }
+        /* Число века */
         output {
             position: absolute;
             top: -40px;
@@ -94,6 +95,7 @@
             border-radius: 10px 10px 0 10px;
             font-weight: bold;
         }
+        /* Окно века */
         .century-box {
             display: flex;
             justify-content: center;
@@ -121,18 +123,16 @@
         <div class="century-box" id="century-box">XVII век</div>
     </div>
 
-    <!-- Скрипты -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Инициализация карты
+        // Карта
         const map = L.map('map').setView([55.7558, 37.6173], 6);
 
-        // Добавление слоя карты
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors',
         }).addTo(map);
 
-        // Создание кастомной иконки
+        // Визуал маркера
         function createCustomIcon(size = 40) {
             const svgContent = `
                 <svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size * 1.5}" viewBox="0 0 26 38">
@@ -145,13 +145,13 @@
                 className: '',
                 html: svgContent,
                 iconSize: [size, size * 1.5],
-                iconAnchor: [size / 2, size * 1.5], // Якорь внизу маркера
+                iconAnchor: [size / 2, size * 1.5],
             });
         }
 
         const customIcon = createCustomIcon(24);
 
-        // Создание маркеров
+        // Маркеры
         const marker1 = L.marker([59.936458, 30.302295], { icon: customIcon }).addTo(map);
         const popupContent1 = `
             <div class="custom-popup">
@@ -162,7 +162,6 @@
         `;
         marker1.bindPopup(popupContent1);
 
-        // Второй маркер
         const marker2 = L.marker([55.515207, 35.908069], { icon: customIcon }).addTo(map);
         const popupContent2 = `
             <div class="custom-popup">
@@ -333,12 +332,12 @@
         `;
         marker18.bindPopup(popupContent18);
 
-        // Обновление значения output и века
+        // Обновление числа и века
         function updateCentury(slider) {
             const output = document.getElementById('volume');
             const centuryBox = document.getElementById('century-box');
 
-            // Преобразуем значения в римские цифры
+            // Преобразование значений
             const centuries = {
                 17: 'XVII',
                 18: 'XVIII',
@@ -348,17 +347,17 @@
 
             const value = slider.value;
 
-            // Обновляем output
+            // Обновление числа
             output.textContent = value;
 
-            // Расчёт позиции output
+            // Сдвиг позиции числа
             const thumbOffset = (slider.offsetWidth - 20) / (slider.max - slider.min) * (value - slider.min);
             output.style.left = `${thumbOffset}px`;
 
-            // Обновляем текст в окошке века
+            // Обновление значения века
             centuryBox.textContent = `${centuries[value]} век`;
 
-            // Обновляем градиент шкалы
+            // Обновление заливки шкалы
             const percentage = ((value - slider.min) / (slider.max - slider.min)) * 100;
             slider.style.background = `linear-gradient(to right, #997E59 ${percentage}%, #E8EDE1 ${percentage}%)`;
         }
