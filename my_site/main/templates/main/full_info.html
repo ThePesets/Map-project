@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ event.name }}</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #495057;
+            color: #E8EDE1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .info-panel {
+            background-color: #A68A64;
+            width: 70%;
+            max-width: 700px;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        button {
+            background-color: #A68A64;
+            border: none;
+            padding: 10px 20px;
+            color: #E8EDE1;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #E8EDE1;
+            color: #495057;
+        }
+        a {
+            color: #E8EDE1;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="info-panel">
+        <h2>{{ event.name }}</h2>
+        <p><strong>Дата:</strong> {{ event.date }}</p>
+        <p>{{ event.description }}</p>
+        <div class="pagination">
+            <a href="{% url 'short_info' event.id %}">Назад</a>
+            <button onclick="alert('Следующая страница функционала еще не реализована')">Далее</button>
+        </div>
+    </div>
+</body>
+</html>

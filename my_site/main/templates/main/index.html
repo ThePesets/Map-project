@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Карта сражений</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        /* Карта */
+        #map {
+            height: 100vh;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        /* Окно маячка */
+        .custom-popup {
+            background: #E8EDE1;
+            border: 2px solid #495057;
+            border-radius: 5px;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+            color: #495057;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        .custom-popup h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #997E59;
+        }
+        .custom-popup h2 {
+            margin: 0;
+            front-size: 24px;
+            color: #495057;
+        }
+        .custom-popup p {
+            margin: 5px 0 0;
+            font-size: 16px;
+            color: 000000;
+        }
+        /* Треугольный указатель */
+        .leaflet-popup-tip {
+            background: #E8EDE1;
+        }
+        /* Пользунок */
+        .slider {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        #fader {
+            width: 300px;
+            height: 9px;
+            background: #E8EDE1;
+            border: 3px solid #495057;
+            border-radius: 5px;
+            outline: none;
+            -webkit-appearance: none;
+            position: relative;
+        }
+        #fader::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #495057;
+            border-radius: 50%;
+            background: #E8EDE1;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+        }
+        #fader::-webkit-slider-runnable-track {
+            -webkit-appearance: none;
+            height: 20px;
+            border-radius: 5px;
+            background: transparent;
+        }
+        output {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            padding: 5px 8px;
+            background: #E8EDE1;
+            color: #495057;
+            border: 3px solid #495057;
+            border-radius: 10px 10px 0 10px;
+            font-weight: bold;
+        }
+        .century-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 82px;
+            height: 28px;
+            background: #E8EDE1;
+            border: 2px solid #495057;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #495057;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Карта -->
+    <div id="map"></div>
+
+    <!-- Ползунок -->
+    <div class="slider">
+        <output id="volume">17</output>
+        <input type="range" id="fader" min="17" max="20" value="17" step="1" oninput="updateCentury(this)">
+        <div class="century-box" id="century-box">XVII век</div>
+    </div>
+
+    <!-- Скрипты -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Инициализация карты
+        const map = L.map('map').setView([55.7558, 37.6173], 7);
+
+        // Добавление слоя карты
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+        }).addTo(map);
+
+        // Создание кастомной иконки
+        function createCustomIcon(size = 40) {
+            const svgContent = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size * 1.5}" viewBox="0 0 26 38">
+                    <path d="M12 0C7 0 3 4 3 9c0 5 9 20 9 20s9-15 9-20c0-5-4-9-9-9z" 
+                          fill="#AE153C" stroke="#660D23" stroke-width="2"/>
+                    <circle cx="12" cy="12" r="4" fill="#F6F5F0"/>
+                </svg>
+            `;
+            return L.divIcon({
+                className: '',
+                html: svgContent,
+                iconSize: [size, size * 1.5],
+                iconAnchor: [size / 2, size * 1.5], // Якорь внизу маркера
+            });
+        }
+
+        const customIcon = createCustomIcon(24);
+
+        // Создание маркера с кастомной иконкой
+        const marker1 = L.marker([59.936458, 30.302295], { icon: customIcon }).addTo(map);
+        const popupContent1 = `
+            <div class="custom-popup">
+                <h3>г. Санкт-Петербург, Сенатская площадь</h3>
+                <h2>14.12.1825г. - Восстание декабристов</h2>
+                <p>Первое в истории России вооружённое выступление против самодержавной власти, попытка дворян-офицеров установить в государстве конституционный строй. Произошло во время династического кризиса после смерти царя Александра I. Было подавлено, но стало символом борьбы за свободу.</p>
+            </div>
+        `;
+        marker1.bindPopup(popupContent1);
+
+        // Второй маркер
+        const marker2 = L.marker([55.515207, 35.908069], { icon: customIcon }).addTo(map);
+        const popupContent2 = `
+            <div class="custom-popup">
+                <h3>Московская область, деревня Бородино</h3>
+                <h2>26.08.1812г. - Бородинская битва</h2>
+                <p>Крупнейшее сражение Отечественной войны между русской армией под командованием Кутузова и войсками Наполеона. Битва была крайне ожесточённой и закончилась тактической победой французов, но стратегически ослабила их армию. Это сражение стало символом героизма русских солдат.</p>
+            </div>
+        `;
+        marker2.bindPopup(popupContent2);
+
+        const marker3 = L.marker([49.5883, 34.5514], { icon: customIcon }).addTo(map);
+        const popupContent3 = `
+            <div class="custom-popup">
+                <h3>г. Полтава</h3>
+                <h2>27.06.1709г. - Полтавская битва</h2>
+                <p>Решающее сражение Северной войны, где русская армия под руководством Петра I разгромила шведов Карла XII. Победа укрепила позиции России как великой европейской державы.</p>
+            </div>
+        `;
+        marker3.bindPopup(popupContent3);
+
+        const marker4 = L.marker([55.752172, 37.618936], { icon: customIcon }).addTo(map);
+        const popupContent4 = `
+            <div class="custom-popup">
+                <h3>г. Москва, Чудов монастырь</h3>
+                <h2>15-17.09.1771г. - Чумной бунт</h2>
+                <p>Массовые беспорядки вспыхнули из-за карантина и эпидемии чумы. Народ протестовал против ограничений и решений властей, восстание подавлено войсками.</p>
+            </div>
+        `;
+        marker4.bindPopup(popupContent4);
+
+        const marker5 = L.marker([54.752172, 36.618936], { icon: customIcon }).addTo(map);
+        const popupContent5 = `
+            <div class="custom-popup">
+                <h3>г. Москва, Чудов монастырь</h3>
+                <h2>15-17.09.1771г. - Чумной бунт</h2>
+                <p>Массовые беспорядки вспыхнули из-за карантина и эпидемии чумы. Народ протестовал против ограничений и решений властей, восстание подавлено войсками.</p>
+            </div>
+        `;
+        marker5.bindPopup(popupContent5);
+
+        // Обновление значения output и века
+        function updateCentury(slider) {
+            const output = document.getElementById('volume');
+            const centuryBox = document.getElementById('century-box');
+
+            // Преобразуем значения в римские цифры
+            const centuries = {
+                17: 'XVII',
+                18: 'XVIII',
+                19: 'XIX',
+                20: 'XX',
+            };
+
+            const value = slider.value;
+
+            // Обновляем output
+            output.textContent = value;
+
+            // Расчёт позиции output
+            const thumbOffset = (slider.offsetWidth - 20) / (slider.max - slider.min) * (value - slider.min);
+            output.style.left = `${thumbOffset}px`;
+
+            // Обновляем текст в окошке века
+            centuryBox.textContent = `${centuries[value]} век`;
+
+            // Обновляем градиент шкалы
+            const percentage = ((value - slider.min) / (slider.max - slider.min)) * 100;
+            slider.style.background = `linear-gradient(to right, #997E59 ${percentage}%, #E8EDE1 ${percentage}%)`;
+        }
+
+        // Инициализация начального значения
+        const slider = document.getElementById('fader');
+        updateCentury(slider);
+    </script>
+</body>
