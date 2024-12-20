@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подробная информация</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #E8EDE1;
+            color: #495057;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #495057;
+            box-shadow: 0 5px 7px rgba(0, 0, 0, 0.2);
+            color: #E8EDE1;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .header .close {
+            margin-right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            color: #E8EDE1;
+        }
+        .content {
+            max-width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #E8EDE1;
+            border: 3px solid #997E59;
+            border-radius: 8px;
+            padding-top: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .content h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        .content h3 {
+            front-size: 20px;
+            margin-bottom: 12px;
+        }
+        .content p {
+            font-size: 18px;
+            color: #000000;
+            line-height: 1.6;
+        }
+        @media (max-width: 95%) {
+            body {
+                front-size: 14px;
+            }
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 5px 10px;
+            color: #997E59;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="close" onclick="window.history.back();">&times;</button>
+        <span>Подробнее</span>
+    </div>
+    <div class="content">
+        <h1>Цусимское сражение</h1>
+        <h3>Причины:</h3>
+        <p>Цусимское сражение было кульминацией Русско-японской войны (1904–1905), которая началась из-за амбициозной политики России в Дальнем Востоке и стремления контролировать Манчжурию и Корею. Япония, заинтересованная в расширении своего влияния, вступила в войну с Россией, чтобы предотвратить её господство в регионе. Одним из важнейших моментов стал конфликт в Корейском проливе и стремление Японии ослабить российский флот.</p>
+        <h3>Ход событий:</h3>
+        <p>Сражение произошло в мае 1905 года в Цусимском проливе между Токийским заливом и Корейским полуостровом. Русский флот, отправившийся с Балтики на Дальний Восток, был атакован японской флотилией под командованием адмирала Хэято Исидзуки. Несмотря на численное превосходство России, японцы применили более эффективные тактики, а также лучше подготовленный флот. В результате сражения вся русская эскадра была уничтожена или потоплена, а потери России составили более 4 тысяч человек, в то время как японцы потеряли лишь несколько сотен.</p>
+        <h3>Последствия:</h3>
+        <p>Цусимское сражение стало крупнейшим поражением России в морской войне, что значительно ослабило её позиции в Дальнем Востоке. Это поражение ускорило завершение Русско-японской войны и привело к политическим потрясениям внутри России, включая революцию 1905 года. Япония укрепила своё влияние в регионе, а Россия вынуждена была подписать Портсмутский мир, отдав Японии Корею и Южный Сахалин.</p>
+        <a href="#" class="back-button" onclick="window.history.back();">↞ Вернуться к карте</a>
+    </div>
+</body>
+</html>

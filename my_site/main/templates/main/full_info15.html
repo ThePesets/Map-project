@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подробная информация</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #E8EDE1;
+            color: #495057;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #495057;
+            box-shadow: 0 5px 7px rgba(0, 0, 0, 0.2);
+            color: #E8EDE1;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .header .close {
+            margin-right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            color: #E8EDE1;
+        }
+        .content {
+            max-width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #E8EDE1;
+            border: 3px solid #997E59;
+            border-radius: 8px;
+            padding-top: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .content h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+        .content h3 {
+            front-size: 20px;
+            margin-bottom: 12px;
+        }
+        .content p {
+            font-size: 18px;
+            color: #000000;
+            line-height: 1.6;
+        }
+        @media (max-width: 95%) {
+            body {
+                front-size: 14px;
+            }
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 5px 10px;
+            color: #997E59;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="close" onclick="window.history.back();">&times;</button>
+        <span>Подробнее</span>
+    </div>
+    <div class="content">
+        <h1>Брусиловский прорыв</h1>
+        <h3>Причины:</h3>
+        <p>Брусиловский прорыв стал важным эпизодом Первой мировой войны. Российская армия, несмотря на поражения на других фронтах, решила начать наступление против австро-венгерских войск на восточном фронте. Главной целью было ослабление австро-венгерской армии, которая активно воевала с Россией, и улучшение морального состояния солдат.</p>
+        <h3>Ход событий:</h3>
+        <p>Брусиловский прорыв начался 4 июня 1916 года и был осуществлён под командованием генерала Алексея Брусилова. В его распоряжении находились более 1,5 миллиона человек. Российская армия осуществила массированные удары по австро-венгерским позициям в Карпатах и на Волыни. С помощью использования новых тактик, таких как использование артиллерии для разрушения противника и быстрое наступление пехоты, русские войска прорвали оборону противника, освободили значительные территории, захватили несколько крупных городов и нанесли серьёзные потери австрийцам.</p>
+        <h3>Последствия:</h3>
+        <p>Брусиловский прорыв стал одним из крупнейших успехов России на Восточном фронте Первой мировой войны. Он привёл к потере значительных территорий Австро-Венгрией и ослабил её армию. Однако успех был временным, так как фронт быстро стабилизировался. Несмотря на успех, общее положение на других фронтах и внутри России не позволило извлечь долгосрочные стратегические преимущества. Прорыв также показал важность новых тактических подходов в войне.</p>
+        <a href="#" class="back-button" onclick="window.history.back();">↞ Вернуться к карте</a>
+    </div>
+</body>
+</html>
