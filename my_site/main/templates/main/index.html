@@ -166,203 +166,174 @@
         const customIcon = createCustomIcon(24);
 
         // Маркеры
-        const marker1 = L.marker([59.936458, 30.302295], { icon: customIcon }).addTo(map);
-        const popupContent1 = `
-            <div class="custom-popup">
-                <h3>г. Санкт-Петербург, Сенатская площадь</h3>
-                <h2>14.12.1825г. - Восстание декабристов</h2>
-                <p>Первое в истории России вооружённое выступление против самодержавной власти, попытка дворян-офицеров установить в государстве конституционный строй. Произошло во время династического кризиса после смерти царя Александра I. Было подавлено, но стало символом борьбы за свободу.</p>
-                <p><button class="info-button"><a href="{% url 'full_info1' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker1.bindPopup(popupContent1);
+        const markers = {
+            17: [
+                L.marker([55.753834, 37.621181], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>г. Москва, Красная площадь</h3>
+                        <h2>01-11.06.1648г. - Соляной бунт</h2>
+                        <p>Восстание вызвано введением высоких налогов на соль. Жители Москвы требовали отмены налогов и наказания чиновников, что вынудило царя Алексея Михайловича пойти на уступки.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info5' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+                L.marker([65.0196, 35.7102], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>Архангельская область, Соловецкий монастырь</h3>
+                        <h2>22.06.1668-02.02.1676гг. - Соловецкое восстание</h2>
+                        <p>Монахи Соловецкого монастыря подняли мятеж против церковных реформ патриарха Никона. Осада длилась восемь лет, после чего монастырь был взят царскими войсками.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info6' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+                L.marker([51.5310, 45.9783], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>Поволжье, г. Царицын</h3>
+                        <h2>1667-1669, 1670-1671гг. - Восстание Степана Разина</h2>
+                        <p>Казацкий атаман Степан Разин поднял крестьян и казаков против царской власти и феодального гнёта. Восстание охватило многие регионы, но было подавлено, а Разин казнён.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info7' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+                L.marker([55.6673, 37.67076], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>Село Коломенское</h3>
+                        <h2>25.07.1662г. - Медный бунт</h2>
+                        <p>Восстание вспыхнуло из-за введения медных денег, что привело к резкому обесцениванию валюты. Недовольство горожан жестоко подавлено, около тысячи человек были казнены.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info8' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+            ],
+            18: [
+                L.marker([49.5883, 34.5514], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>г. Полтава</h3>
+                        <h2>27.06.1709г. - Полтавская битва</h2>
+                        <p>Решающее сражение Северной войны, где русская армия под руководством Петра I разгромила шведов Карла XII. Победа укрепила позиции России как великой европейской державы.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info3' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+                L.marker([55.752172, 37.618936], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>г. Москва, Чудов монастырь</h3>
+                        <h2>15-17.09.1771г. - Чумной бунт</h2>
+                        <p>Массовые беспорядки вспыхнули из-за карантина и эпидемии чумы. Народ протестовал против ограничений и решений властей, восстание подавлено войсками.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info4' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+                L.marker([59.9019, 22.9384], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>Балтийское море</h3>
+                        <h2>26.07.1714г. - Битва при Гангуте</h2>
+                        <p>Первая крупная морская победа русского флота под командованием Петра I над шведами. Успех обеспечил России контроль над Балтийским морем.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info9' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+                L.marker([52.6152, 58.1934], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>Яицкий городок</h3>
+                        <h2>1773-1775г. - Пугачёвское восстание</h2>
+                        <p>Под предводительством Емельяна Пугачёва казаки и крестьяне восстали против крепостничества. Восстание охватило обширные территории, но было подавлено.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info10' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+                L.marker([45.3499, 28.8336], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>Крепость Измаил</h3>
+                        <h2>22.12.1790г. - Штурм Измаила</h2>
+                        <p>Русская армия под командованием А. В. Суворова взяла неприступную крепость Османской империи. Победа ускорила подписание выгодного Ясского мира.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info11' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+            ],
+            19: [
+                L.marker([59.936458, 30.302295], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>г. Санкт-Петербург, Сенатская площадь</h3>
+                        <h2>14.12.1825г. - Восстание декабристов</h2>
+                        <p>Первое в истории России вооружённое выступление против самодержавной власти, попытка дворян-офицеров установить в государстве конституционный строй. Произошло во время династического кризиса после смерти царя Александра I. Было подавлено, но стало символом борьбы за свободу.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info1' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+                L.marker([55.515207, 35.908069], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>Московская область, деревня Бородино</h3>
+                        <h2>26.08.1812г. - Бородинская битва</h2>
+                        <p>Крупнейшее сражение Отечественной войны между русской армией под командованием Кутузова и войсками Наполеона. Битва была крайне ожесточённой и закончилась тактической победой французов, но стратегически ослабила их армию. Это сражение стало символом героизма русских солдат.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info2' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+                L.marker([44.6167, 33.5254], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>Крым, г.Севастополь</h3>
+                        <h2>1854-1855гг. - Оборона Севастополя</h2>
+                        <p>Во время Крымской войны русские войска в течение года героически обороняли город от коалиции Британии, Франции и Турции. Несмотря на поражение, оборона стала символом стойкости.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info12' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+                L.marker([42.3863, 46.5250], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>Село Гуниб</h3>
+                        <h2>25.08.1859г. - Пленение Шамиля</h2>
+                        <p>Захват имама Шамиля русскими войсками стал ключевым моментом в завершении Кавказской войны.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info13' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+                L.marker([42.02657, 35.151103], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>Гавань г. Синоп</h3>
+                        <h2>18.11.1853г. - Синопское сражение</h2>
+                        <p>Разгром турецкой эскадры русским черноморским флотом под командованием вице-адмирала Нахимова. В ходе сражения были уничтожены почти все турецкие корабли.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info14' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+            ],
+            20: [
+                L.marker([50.7593, 25.3424], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>г. Луцк</h3>
+                        <h2>22.05.1916г. - Брусиловский прорыв</h2>
+                        <p>Крупнейшая операция русской армии, приведшая к значительным потерям австро-венгерских войск. Прорыв укрепил союзников на восточном фронте.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info15' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),        
+                L.marker([59.939403, 30.315193], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>г. Санкт-Петергбург, Дворцовая площадь</h3>
+                        <h2>25.10.1917г. - Октябрьская революция</h2>
+                        <p>Большевики свергли Временное правительство, начав создание советской власти. Это событие стало началом новой эпохи в истории России.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info16' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+                L.marker([48.7080, 44.5133], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>г. Волгоград</h3>
+                        <h2>17.07.1942-02.02.1943гг. - Сталинградская битва</h2>
+                        <p>Ключевое сражение Великой Отечественной войны, где советская армия путём ожесточённых боёв переломила ход войны, победив немецкие войска.</p>
+                        <p><button class="info-button"><a href="{% url 'full_info17' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),        
+                L.marker([34.3359, 130.0903], { icon: customIcon }).bindPopup(`
+                    <div class="custom-popup">
+                        <h3>Корейский пролив</h3>
+                        <h2>14-15.05.1905г. - Цусимское сражение</h2>
+                        <p>Битва, в ходе которой российская эскадра потерпела сокрушительное поражение. Этот разгром оказал решающее влияние на исход Русско-японской войны</p>
+                        <p><button class="info-button"><a href="{% url 'full_info18' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
+                    </div>
+                `),
+            ]
+        };
 
-        const marker2 = L.marker([55.515207, 35.908069], { icon: customIcon }).addTo(map);
-        const popupContent2 = `
-            <div class="custom-popup">
-                <h3>Московская область, деревня Бородино</h3>
-                <h2>26.08.1812г. - Бородинская битва</h2>
-                <p>Крупнейшее сражение Отечественной войны между русской армией под командованием Кутузова и войсками Наполеона. Битва была крайне ожесточённой и закончилась тактической победой французов, но стратегически ослабила их армию. Это сражение стало символом героизма русских солдат.</p>
-                <p><button class="info-button"><a href="{% url 'full_info2' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker2.bindPopup(popupContent2);
+        let currentMarkers = [];
 
-        const marker3 = L.marker([49.5883, 34.5514], { icon: customIcon }).addTo(map);
-        const popupContent3 = `
-            <div class="custom-popup">
-                <h3>г. Полтава</h3>
-                <h2>27.06.1709г. - Полтавская битва</h2>
-                <p>Решающее сражение Северной войны, где русская армия под руководством Петра I разгромила шведов Карла XII. Победа укрепила позиции России как великой европейской державы.</p>
-                <p><button class="info-button"><a href="{% url 'full_info3' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker3.bindPopup(popupContent3);
+        function updateMarkers(century) {
+            currentMarkers.forEach(marker => map.removeLayer(marker));
+            currentMarkers = [];
 
-        const marker4 = L.marker([55.752172, 37.618936], { icon: customIcon }).addTo(map);
-        const popupContent4 = `
-            <div class="custom-popup">
-                <h3>г. Москва, Чудов монастырь</h3>
-                <h2>15-17.09.1771г. - Чумной бунт</h2>
-                <p>Массовые беспорядки вспыхнули из-за карантина и эпидемии чумы. Народ протестовал против ограничений и решений властей, восстание подавлено войсками.</p>
-                <p><button class="info-button"><a href="{% url 'full_info4' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker4.bindPopup(popupContent4);
-
-        const marker5 = L.marker([55.753834, 37.621181], { icon: customIcon }).addTo(map);
-        const popupContent5 = `
-            <div class="custom-popup">
-                <h3>г. Москва, Красная площадь</h3>
-                <h2>01-11.06.1648г. - Соляной бунт</h2>
-                <p>Восстание вызвано введением высоких налогов на соль. Жители Москвы требовали отмены налогов и наказания чиновников, что вынудило царя Алексея Михайловича пойти на уступки.</p>
-                <p><button class="info-button"><a href="{% url 'full_info5' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker5.bindPopup(popupContent5);
-
-        const marker6 = L.marker([65.0196, 35.7102], { icon: customIcon }).addTo(map);
-        const popupContent6 = `
-            <div class="custom-popup">
-                <h3>Архангельская область, Соловецкий монастырь</h3>
-                <h2>22.06.1668-02.02.1676гг. - Соловецкое восстание</h2>
-                <p>Монахи Соловецкого монастыря подняли мятеж против церковных реформ патриарха Никона. Осада длилась восемь лет, после чего монастырь был взят царскими войсками.</p>
-                <p><button class="info-button"><a href="{% url 'full_info6' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker6.bindPopup(popupContent6);
-
-        const marker7 = L.marker([51.5310, 45.9783], { icon: customIcon }).addTo(map);
-        const popupContent7 = `
-            <div class="custom-popup">
-                <h3>Поволжье, г. Царицын</h3>
-                <h2>1667-1669, 1670-1671гг. - Восстание Степана Разина</h2>
-                <p>Казацкий атаман Степан Разин поднял крестьян и казаков против царской власти и феодального гнёта. Восстание охватило многие регионы, но было подавлено, а Разин казнён.</p>
-                <p><button class="info-button"><a href="{% url 'full_info7' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker7.bindPopup(popupContent7);
-
-        const marker8 = L.marker([55.6673, 37.67076], { icon: customIcon }).addTo(map);
-        const popupContent8 = `
-            <div class="custom-popup">
-                <h3>Село Коломенское</h3>
-                <h2>25.07.1662г. - Медный бунт</h2>
-                <p>Восстание вспыхнуло из-за введения медных денег, что привело к резкому обесцениванию валюты. Недовольство горожан жестоко подавлено, около тысячи человек были казнены.</p>
-                <p><button class="info-button"><a href="{% url 'full_info8' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker8.bindPopup(popupContent8);
-
-        const marker9 = L.marker([59.9019, 22.9384], { icon: customIcon }).addTo(map);
-        const popupContent9 = `
-            <div class="custom-popup">
-                <h3>Балтийское море</h3>
-                <h2>26.07.1714г. - Битва при Гангуте</h2>
-                <p>Первая крупная морская победа русского флота под командованием Петра I над шведами. Успех обеспечил России контроль над Балтийским морем.</p>
-                <p><button class="info-button"><a href="{% url 'full_info9' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker9.bindPopup(popupContent9);
-
-        const marker10 = L.marker([52.6152, 58.1934], { icon: customIcon }).addTo(map);
-        const popupContent10 = `
-            <div class="custom-popup">
-                <h3>Яицкий городок</h3>
-                <h2>1773-1775г. - Пугачёвское восстание</h2>
-                <p>Под предводительством Емельяна Пугачёва казаки и крестьяне восстали против крепостничества. Восстание охватило обширные территории, но было подавлено.</p>
-                <p><button class="info-button"><a href="{% url 'full_info10' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker10.bindPopup(popupContent10);
-
-        const marker11 = L.marker([45.3499, 28.8336], { icon: customIcon }).addTo(map);
-        const popupContent11 = `
-            <div class="custom-popup">
-                <h3>Крепость Измаил</h3>
-                <h2>22.12.1790г. - Штурм Измаила</h2>
-                <p>Русская армия под командованием А. В. Суворова взяла неприступную крепость Османской империи. Победа ускорила подписание выгодного Ясского мира.</p>
-                <p><button class="info-button"><a href="{% url 'full_info11' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker11.bindPopup(popupContent11);
-
-        const marker12 = L.marker([44.6167, 33.5254], { icon: customIcon }).addTo(map);
-        const popupContent12 = `
-            <div class="custom-popup">
-                <h3>Крым, г.Севастополь</h3>
-                <h2>1854-1855гг. - Оборона Севастополя</h2>
-                <p>Во время Крымской войны русские войска в течение года героически обороняли город от коалиции Британии, Франции и Турции. Несмотря на поражение, оборона стала символом стойкости.</p>
-                <p><button class="info-button"><a href="{% url 'full_info12' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker12.bindPopup(popupContent12);
-
-        const marker13 = L.marker([42.3863, 46.5250], { icon: customIcon }).addTo(map);
-        const popupContent13 = `
-            <div class="custom-popup">
-                <h3>Село Гуниб</h3>
-                <h2>25.08.1859г. - Пленение Шамиля</h2>
-                <p>Захват имама Шамиля русскими войсками стал ключевым моментом в завершении Кавказской войны.</p>
-                <p><button class="info-button"><a href="{% url 'full_info13' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker13.bindPopup(popupContent13);
-
-        const marker14 = L.marker([42.02657, 35.151103], { icon: customIcon }).addTo(map);
-        const popupContent14 = `
-            <div class="custom-popup">
-                <h3>Гавань г. Синоп</h3>
-                <h2>18.11.1853г. - Синопское сражение</h2>
-                <p>Разгром турецкой эскадры русским черноморским флотом под командованием вице-адмирала Нахимова. В ходе сражения были уничтожены почти все турецкие корабли.</p>
-                <p><button class="info-button"><a href="{% url 'full_info14' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker14.bindPopup(popupContent14);
-
-        const marker15 = L.marker([50.7593, 25.3424], { icon: customIcon }).addTo(map);
-        const popupContent15 = `
-            <div class="custom-popup">
-                <h3>г. Луцк</h3>
-                <h2>22.05.1916г. - Брусиловский прорыв</h2>
-                <p>Крупнейшая операция русской армии, приведшая к значительным потерям австро-венгерских войск. Прорыв укрепил союзников на восточном фронте.</p>
-                <p><button class="info-button"><a href="{% url 'full_info15' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker15.bindPopup(popupContent15);
-
-        const marker16 = L.marker([59.939403, 30.315193], { icon: customIcon }).addTo(map);
-        const popupContent16 = `
-            <div class="custom-popup">
-                <h3>г. Санкт-Петергбург, Дворцовая площадь</h3>
-                <h2>25.10.1917г. - Октябрьская революция</h2>
-                <p>Большевики свергли Временное правительство, начав создание советской власти. Это событие стало началом новой эпохи в истории России.</p>
-                <p><button class="info-button"><a href="{% url 'full_info16' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker16.bindPopup(popupContent16);
-
-        const marker17 = L.marker([48.7080, 44.5133], { icon: customIcon }).addTo(map);
-        const popupContent17 = `
-            <div class="custom-popup">
-                <h3>г. Волгоград</h3>
-                <h2>17.07.1942-02.02.1943гг. - Сталинградская битва</h2>
-                <p>Ключевое сражение Великой Отечественной войны, где советская армия путём ожесточённых боёв переломила ход войны, победив немецкие войска.</p>
-                <p><button class="info-button"><a href="{% url 'full_info17' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker17.bindPopup(popupContent17);
-
-        const marker18 = L.marker([34.3359, 130.0903], { icon: customIcon }).addTo(map);
-        const popupContent18 = `
-            <div class="custom-popup">
-                <h3>Корейский пролив</h3>
-                <h2>14-15.05.1905г. - Цусимское сражение</h2>
-                <p>Битва, в ходе которой российская эскадра потерпела сокрушительное поражение. Этот разгром оказал решающее влияние на исход Русско-японской войны</p>
-                <p><button class="info-button"><a href="{% url 'full_info18' %}" style="color: #997E59;">Подробнее ↠</a></button></p>
-            </div>
-        `;
-        marker18.bindPopup(popupContent18);
+            if (markers[century]) {
+                markers[century].forEach(marker => {
+                    marker.addTo(map)
+                    currentMarkers.push(marker);
+                });
+            }
+        }
 
         // Обновление числа и века
         function updateCentury(slider) {
@@ -392,10 +363,13 @@
             // Обновление заливки шкалы
             const percentage = ((value - slider.min) / (slider.max - slider.min)) * 100;
             slider.style.background = `linear-gradient(to right, #997E59 ${percentage}%, #E8EDE1 ${percentage}%)`;
+
+            updateMarkers(value);
         }
 
         // Инициализация начального значения
         const slider = document.getElementById('fader');
         updateCentury(slider);
+        updateMarkers(slider.value);
     </script>
 </body>
