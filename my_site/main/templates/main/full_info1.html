@@ -103,6 +103,94 @@
         .back-button:hover {
             background-color: #76543E;
         }
+        .test-button {
+            display: inline-block;
+            margin-top: 20px;
+            margin-left: auto;
+            padding: 10px 20px;
+            color: #E8EDE1;
+            background-color: #997E59;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            text-align: center;
+        }
+        .test-button:hover {
+            background-color: #76543E;
+        }
+        .test-container {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(232, 237, 225, 0.9);
+            border: 4px solid #997E59;
+            border-radius: 10px;
+        }
+        .question {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        .answers {
+            margin-bottom: 20px;
+        }
+        .answers input {
+            margin-right: 10px;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .gallery {
+            position: relative;
+            max-width: 100%; /* Галерея занимает всю ширину экрана */
+            margin: 20px auto;
+            overflow: hidden;
+            text-align: center;
+        }
+        .gallery-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .gallery-item {
+            min-width: 100%; /* Каждое изображение занимает 100% ширины галереи */
+            box-sizing: border-box;
+        }
+        .gallery-image {
+            height: 400px; /* Фиксированная высота */
+            max-width: 100%; /* Не превышает ширину экрана */
+            object-fit: contain; /* Масштабирование изображения с сохранением пропорций */
+            border-radius: 8px;
+        }
+        .gallery-caption {
+            text-align: center;
+            font-size: 16px;
+            color: #495057;
+            margin-top: 10px;
+        }
+        .gallery-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        .gallery-arrow {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .gallery-arrow:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
         @media (max-width: 768px) {
             .content {
                 margin: 80px 10px 20px;
@@ -113,6 +201,9 @@
             }
             p {
                 font-size: 16px;
+            }
+            .gallery-image {
+                height: 200px;
             }
         }
     </style>
@@ -128,23 +219,184 @@
     </div>
     <div class="content">
         <h3>Причины:</h3>
-        <p>Восстание декабристов стало результатом глубокого недовольства части дворян реформами и политикой самодержавия в Российской империи.
-            Победа над Наполеоном в 1812 году пробудила надежды на либеральные реформы, однако Александр I продолжил укреплять абсолютизм.
-            Рост национального самосознания и влияние идей французской революции способствовали формированию тайных обществ, таких как «Северное» и «Южное», которые стремились к отмене крепостного права, ограничению самодержавия и введению Конституции.</p>
+        <p>Восстание декабристов было обусловлено целым рядом политических, социальных и культурных факторов, сложившихся в начале XIX века. 
+            Главной причиной стало стремление передовой части дворянства реформировать устаревшую самодержавную систему России. 
+            Победа в Отечественной войне 1812 года способствовала росту национального самосознания, а служба офицеров в Европе дала им возможность увидеть более прогрессивные государственные устройства. 
+            Идеи Французской революции, такие как свобода, равенство и братство, вдохновили российскую интеллигенцию.</p>
+        <p>Смерть императора Александра I 19 ноября (1 декабря) 1925 года и последовавший за ней кризис престолонаследия также сыграли важную роль. 
+            Наследник престола Константин Павлович отказался от трона в пользу младшего брата Николая Павловича, что привело к неразберихе и дало заговорщикам возможность выступить против новой власти. 
+            Тайные общества, такие как «Северное общество» (возглавляемое Никитой Муравьёвым) и «Южное общество» (под руководством Павла Пестеля), уже готовили планы свержения самодержавия, но поспешили с действиями из-за политической нестабильности.</p>
         <h3>Ход событий:</h3>
-        <p>Восстание началось 14 декабря 1825 года в Санкт-Петербурге.
-            После смерти Александра I в ноябре 1825 года возник династический кризис: императором должен был стать его брат Константин, но он отказался от престола в пользу Николая I.
-            Используя момент перехода власти, декабристы решили выступить против нового императора.</p>
-        <p>На Сенатской площади собрались около 3 тысяч солдат под предводительством декабристов.
-            Лидеры восстания, такие как Пётр Каховский, Сергей Трубецкой и Павел Пестель, разрабатывали план действий, но он оказался плохо организованным.
-            Восставшие не смогли привлечь достаточное количество войск и гражданского населения. Николай I лично руководил подавлением мятежа.
-            Артиллерийский обстрел разогнал собравшихся, многие были арестованы, а некоторые утонули, пытаясь спастись.</p>
+        <p>14 декабря 1825 года восстание началось в Санкт-Петербурге. 
+            Декабристы решили использовать момент принесения присяги Николаю I, чтобы организовать вооружённое выступление. 
+            Заговорщики намеревались вывести свои войска на Сенатскую площадь, заставить Сенат принять Манифест к русскому народу и провозгласить республику.</p>
+        <p>На площади собрались около 3 тысяч солдат, предводимых декабристами. 
+            Среди главных участников выступления были Сергей Трубецкой, Михаил Бестужев-Рюмин, Пётр Каховский, Кондратий Рылеев. 
+            Однако из-за плохой координации действий не все планы были выполнены: Трубецкой, назначенный диктатором восстания, не явился на площадь, а силы восставших оказались разрозненными.</p>
+        <p>Император Николай I быстро отреагировал на мятеж. 
+            Он приказал окружить Сенатскую площадь и попытался склонить мятежников к сдаче, но переговоры провалились. 
+            Войска Николая начали артиллерийский обстрел площади. 
+            В результате несколько сотен восставших были убиты, остальные арестованы. 
+            Несколько человек, включая Каховского, пытались спастись, но их быстро схватили.</p>
         <h3>Последствия:</h3>
-        <p>Восстание было подавлено, его лидеры подверглись суровым наказаниям: П. И. Пестель, К. Ф. Рылеев, С. И. Муравьёв-Апостол, М. П. Бестужев-Рюмин и П. Г. Каховский были казнены, остальные сосланы в Сибирь.
-            Николай I начал эпоху жёсткой цензуры и политических репрессий.
-            Однако декабристы заложили основу для последующих движений за реформы в России.
-            Их идеи вдохновили следующие поколения революционеров, а само восстание стало символом борьбы за свободу и справедливость.</p>
-        <a href="#" class="back-button" onclick="window.history.back();">↞ Вернуться к карте</a>
+        <p>Восстание декабристов было подавлено, а его лидеры подверглись жёсткому наказанию. 
+            Пять человек (П. Г. Каховский, К. Ф. Рылеев, П. И. Пестель, С. И. Муравьёв-Апостол и М. П. Бестужев-Рюмин) были повешены, десятки отправлены на каторгу или сосланы в Сибирь. 
+            Николай I установил режим строгой цензуры и усилил полицейский контроль, опасаясь повторения мятежа.</p>
+        <p>Однако, несмотря на неудачу, восстание декабристов стало важным этапом в истории России. 
+            Оно показало, что часть образованного общества была готова бороться за отмену крепостного права, конституцию и другие демократические реформы. 
+            Восстание вдохновило последующие поколения революционеров и сыграло значительную роль в формировании общественной мысли XIX века.</p>
+        <div class="gallery">
+            <div class="gallery-images" id="gallery-images">
+                <!-- Дублируем последний элемент в начале -->
+                <div class="gallery-item">
+                    <img src="{% static 'images/Константин_Павлович.jpg' %}" alt="Image 4" class="gallery-image">
+                    <div class="gallery-caption">Портрет Великого князя Константина Павловича</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="{% static 'images/карта_восстания.jfif' %}" alt="Image 1" class="gallery-image">
+                    <div class="gallery-caption">Карта восстания на Сенатской площади</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="{% static 'images/декабристы.jpg' %}" alt="Image 2" class="gallery-image">
+                    <div class="gallery-caption">Казнённые участники восстания</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="{% static 'images/Николай_1.jpg' %}" alt="Image 3" class="gallery-image">
+                    <div class="gallery-caption">Портрет императора Николая 1</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="{% static 'images/Константин_Павлович.jpg' %}" alt="Image 4" class="gallery-image">
+                    <div class="gallery-caption">Портрет Великого князя Константина Павловича</div>
+                </div>
+                <!-- Дублируем первый элемент в конце -->
+                <div class="gallery-item">
+                    <img src="{% static 'images/карта_восстания.jfif' %}" alt="Image 1" class="gallery-image">
+                    <div class="gallery-caption">Карта восстания на Сенатской площади</div>
+                </div>
+            </div>
+            <div class="gallery-controls">
+                <button class="gallery-arrow" onclick="prevImage()">&#10094;</button>
+                <button class="gallery-arrow" onclick="nextImage()">&#10095;</button>
+            </div>
+        </div>
+        <script>
+            let currentIndex = 1; // Начинаем со второго элемента (первый — это дубликат последнего)
+            const images = document.getElementById('gallery-images');
+            const totalImages = images.children.length;
+
+            // Устанавливаем начальную позицию
+            images.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            function updateGallery() {
+                images.style.transition = 'transform 0.5s ease-in-out';
+                images.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+                // Плавное перелистывание
+                setTimeout(() => {
+                    if (currentIndex === 0) {
+                        // Если на дубликате последнего элемента, перескакиваем на последний оригинальный
+                        currentIndex = totalImages - 2;
+                        images.style.transition = 'none';
+                        images.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    } else if (currentIndex === totalImages - 1) {
+                        // Если на дубликате первого элемента, перескакиваем на первый оригинальный
+                        currentIndex = 1;
+                        images.style.transition = 'none';
+                        images.style.transform = `translateX(-${currentIndex * 100}%)`;
+                    }
+                }, 500); // Тайм-аут для завершения анимации
+            }
+
+            function nextImage() {
+                currentIndex++;
+                updateGallery();
+            }
+
+            function prevImage() {
+                currentIndex--;
+                updateGallery();
+            }
+        </script>
+        <div style="display: flex; justify-content: space-between;">
+            <a href="#" class="back-button" onclick="window.history.back();">↞ Вернуться к карте</a>
+            <button class="test-button" onclick="startTest()">Пройти тест</button>
+        </div>
+        <div class="test-container" id="test-container">
+            <div id="question-container">
+                <!-- Вопросы будут добавляться здесь через JS -->
+            </div>
+            <div class="action-buttons">
+                <button class="test-button" id="next-button" onclick="nextQuestion()">Следующий вопрос</button>
+                <button class="test-button" id="finish-button" onclick="finishTest()" style="display: none;">Завершить тест</button>
+            </div>
+        </div> 
     </div>
+    <script>
+        const questions = [
+            {
+                text: "Кто возглавлял Северное общество декабристов?",
+                answers: ["Александр I", "Никита Муравьёв", "Сергей Муравьёв-Апостол", "Николай I", "Павел Пестель"],
+                correct: 1
+            },
+            {
+                text: "Когда произошло восстание декабристов?",
+                answers: ["14.12.1812", "19.11.1825", "18.02.1955", "14.12.1825", "26.08.1812"],
+                correct: 3
+            },
+            {
+                text: "Выберите вариант, где перечислены имена только казнённых декабристов:",
+                answers: ["С. Муравьёв-Апостол, С. Трубецкой", "П. Пестель, Н. Муравьёв", "С. Муравьёв-Апостол, К. Рылеев", "К. Рылеев, И. Пущин", "П. Каховский, А. Бенкендорф"],
+                correct: 2
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let correctAnswers = 0;
+
+        function startTest() {
+            document.getElementById("test-container").style.display = "block";
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const questionContainer = document.getElementById("question-container");
+            const question = questions[currentQuestionIndex];
+            questionContainer.innerHTML = `
+                <div class="question">${question.text}</div>
+                <div class="answers">
+                    ${question.answers.map((answer, index) => `
+                        <label>
+                            <input type="radio" name="answer" value="${index}">
+                            ${answer}
+                        </label>
+                    `).join('')}
+                </div>
+            `;
+            document.getElementById("next-button").style.display = currentQuestionIndex < questions.length - 1 ? "inline-block" : "none";
+            document.getElementById("finish-button").style.display = currentQuestionIndex === questions.length - 1 ? "inline-block" : "none";
+        }
+
+        function nextQuestion() {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (!selected) {
+                alert("Выберите ответ перед переходом к следующему вопросу!");
+                return;
+            }
+            if (parseInt(selected.value) === questions[currentQuestionIndex].correct) {
+                correctAnswers++;
+            }
+            currentQuestionIndex++;
+            showQuestion();
+        }
+
+        function finishTest() {
+            const selected = document.querySelector('input[name="answer"]:checked');
+            if (selected && parseInt(selected.value) === questions[currentQuestionIndex].correct) {
+                correctAnswers++;
+            }
+            alert(`Вы правильно ответили на ${correctAnswers} из ${questions.length} вопросов.`);
+            document.getElementById("test-container").style.display = "none";
+        }
+    </script>
 </body>
 </html>
